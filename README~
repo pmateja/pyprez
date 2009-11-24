@@ -1,0 +1,27 @@
+Global setup:
+
+  Download and install Git
+  git config --global user.name "Your Name"
+  git config --global user.email p0mateja@gmail.com
+        
+
+Next steps:
+
+  mkdir pyprez
+  cd pyprez
+  git init
+  touch README
+  git add README
+  git commit -m 'first commit'
+  git remote add origin git@github.com:pmateja/pyprez.git
+  git push origin master
+      
+
+Existing Git Repo?
+
+  cd existing_git_repo
+  git remote add origin git@github.com:pmateja/pyprez.git
+  git push origin master
+      
+Oczywiście repozytorium jest już zrobione, więc tylko stworzyć folder, ściągnąć
+plik gita, czy coś takiego i uruchomić. Nie wiem jak :P

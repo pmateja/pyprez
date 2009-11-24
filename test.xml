@@ -1,0 +1,9 @@
+<address_book>
+  <person gender='m'>
+    <name>fred</name>
+    <phone type='home'>54321</phone>
+    <phone type='cell'>12345</phone>
+    <note>&quot;A<!-- comment --><![CDATA[ <note>]]>&quot;</note>
+  </person>
+</address_book>
+

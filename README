@@ -24,4 +24,6 @@ Existing Git Repo?
   git push origin master
       
 Oczywiście repozytorium jest już zrobione, więc tylko stworzyć folder, ściągnąć
-plik gita, czy coś takiego i uruchomić. Nie wiem jak :P
+plik gita, czy coś takiego i uruchomić. 
+W ten chyba sposób:
+git clone git://github.com:pmateja/pyprez.git

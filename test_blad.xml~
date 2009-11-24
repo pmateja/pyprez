@@ -1,9 +1,0 @@
-<prezentacja>
-    <slajd kolor_tla="czarny" obraz_tla="brak" przejscie="dla pieszych" id="1">
-        <tytul>Windows ssie Arcypingwinowi</tytul>
-        <tresc>
-            Pingwin ma Pytonga w pudełku. Okna nie.
-        </tresc>
-        <obrazek>pingwin_triumfujacy.png</obrazek>
-    </slajd>
-</prezentacja>

@@ -6,6 +6,7 @@ import os, sys
 
 we = sys.argv[1]
 we2 = "parser.xsd"
+
 def start():
     waliduj = walidacja(we, we2)
     if waliduj.walidacja():
@@ -14,4 +15,8 @@ def start():
     print "Jest ok"
     return 0
 
-start()
+if start() != 0:
+    exit()
+
+prezentacja = xml2obj(open(we))
+print prezentacja.slajd[0].id

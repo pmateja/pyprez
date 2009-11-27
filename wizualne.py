@@ -4,6 +4,7 @@ import pygame
 import sys
 
 def input(prezentacja):
+    ostatni = len(prezentacja.dane.slajd) -1  
     running = True
     while running:
         event = pygame.event.poll()
@@ -11,18 +12,19 @@ def input(prezentacja):
             sys.exit(0)
         elif event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:
             running = 0 
-        elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+        elif event.type == pygame.MOUSEBUTTONUP and event.button == 3:
             #lewy przycisk myszy
-            prezentacja.i += 1
-            prezentacja.slajd(1)
+            if prezentacja.i < ostatni:
+                prezentacja.i += 1
+                prezentacja.slajd(prezentacja.i)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 2:
             #srodkowy przycisk myszy
             prezentacja.tloy()
-        elif event.type == pygame.MOUSEBUTTONUP and event.button == 3:
-            prezentacja.i -= 1
-            prezentacja.slajd(prezentacja.i)
+        elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+            if prezentacja.i > 0:
+                prezentacja.i -= 1
+                prezentacja.slajd(prezentacja.i)
             #prawy przycisk myszy
-            pass
         else:
             pass
     pygame.quit()
@@ -32,7 +34,7 @@ class prez:
     y = 600
     tlo = [0,0,0]
     screen = ""
-    i = 0
+    i = -1
     dane = ""
     def __init__(self, dane=""):
         self.dane = dane
@@ -62,10 +64,15 @@ class prez:
         pygame.display.flip()
     def slajd(self, i=0):
         a = self.dane.slajd[i]
+
+        background = pygame.Surface(self.screen.get_size())
+        background = background.convert()
+        background.fill((250, 250, 250))
+
+        self.screen.blit(background, (0,0))
         # Render the text
         font = pygame.font.Font(None, 26)
-        tytul = font.render(a.tytul, True, (255,
-        255, 255), (159, 182, 205))
+        tytul = font.render(a.tytul, True, (33, 33, 33))
 
         # Create a rectangle
         textRect = tytul.get_rect()
@@ -75,21 +82,22 @@ class prez:
         textRect.centery = self.screen.get_rect().centery
 
         # Blit the text
-        self.screen.blit(tytul, (textRect.centerx, 20))
+        self.screen.blit(tytul, (textRect.centerx - tytul.get_width()/2, 20))
 
+        ddol = "<PyPrez> PPM - nastepny LPM - poprzedni ESC - wyjscie           Slajd " + str(self.i + 1)+"/"+str(len(self.dane.slajd))
         font = pygame.font.Font(None, 26)
-        tresc = font.render(a.tresc, True, (255,
+        dol = font.render(ddol, True, (255,
         255, 255), (159, 182, 205))
 
         # Create a rectangle
-        textRect = tresc.get_rect()
+        textRect = dol.get_rect()
 
         # Center the rectangle
         textRect.centerx = self.screen.get_rect().centerx
         textRect.centery = self.screen.get_rect().centery
 
         # Blit the text
-        self.screen.blit(tresc, textRect)
+        self.screen.blit(dol, (textRect.centerx - dol.get_width()/2, self.x - dol.get_height()))
         #-----------------------------------
         toWrite = a.tresc
         wordsToWrite = toWrite.rstrip().split(" ") #Get rid of the newline char and split on spaces
@@ -120,7 +128,7 @@ class prez:
         #self.image = pygame.Surface((maxWidthFound + 20, numLines * textFont.get_height() + 20)) #Create a surface of the appropriate size
 
         for lineNum in range(numLines): 
-            self.screen.blit(lines[lineNum], (10,lineNum * font.get_height() + 10))
+            self.screen.blit(lines[lineNum], (10,lineNum * font.get_height() + 10 + 100))
     #-------------------------------------
         pygame.display.update()
 
